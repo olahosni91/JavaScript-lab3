@@ -1,0 +1,105 @@
+<html>
+    <head>
+        <title>JS lab3</title>
+    </head>
+
+    <script>
+        //part 1
+        //Login
+        let username = "admin", password = "421$$";
+        let enteredName = prompt("Enter your username: ");
+        let enteredpass = prompt("Enter your password: ");
+        if(enteredName == username && enteredpass == password)
+            alert(`Welcome ${username} login success`);
+        else if(enteredName != username && enteredpass != password)
+            alert(`Wrong username and password`);
+        else
+           (enteredName != username)? alert(`Wrong username`) : alert(`Wrong password`);
+        //__________________________________________________
+        //Calc
+        function calc(firstNum, op, secNum){
+            let result;
+            switch (op){
+                case '+':
+                    result = firstNum + secNum;
+                    break;
+                case '-':
+                    result = firstNum - secNum;
+                    break;
+                case '*':
+                    result = firstNum * secNum;
+                    break;
+                case '/':
+                    result = firstNum / secNum;
+                    break;
+                case '%':
+                    result = firstNum % secNum;
+                    break;
+                default:
+                    alert(`Invalid operation`);
+            }
+            return result;
+        }
+        let number1 = Number(prompt(`Enter first number: `));
+
+        for(let i = 0;;i++){
+            let operation = prompt(`Enter an operation (+, *, -, /, %)`);
+            if(operation == null)
+                break;
+            else{
+            let number2 = Number(prompt(`Enter second number`));
+            number1 = calc(number1, operation, number2);
+            alert(`Result = ${number1}`);
+            }
+        }
+        //__________________________________________________
+
+        //Part 2
+        //lap 1
+        let num = prompt(`Enter how many numbers you'll enter: `);
+        let arrNum=[];
+        let sum = 0;
+        for(let i=0;i< num; i++){
+            let data = Number(prompt(`Enter number ${i+1}`));
+            arrNum.push(data);
+            sum +=arrNum[i];
+
+        }
+        alert(`Sum = ${sum} ,Average = ${sum/num}`);
+        let sumFun = (...myArray) => {
+            for(let k=0; k<myArray.length; k++){
+                sum += myArray[k];
+            }  
+            return sum;
+        }
+        let returnValue = sumFun(...arrNum);
+        alert(`Sum = ${returnValue} , Avg = ${returnValue/num}`);
+
+        //__________________________________________________
+
+        // //lap 2 :
+        let contactsArr = [];
+        for(let i=0;;i++){
+            let msg = prompt(`Enter operation name (add, search): `);
+            if(msg === 'add'){
+                let contactName = prompt('Enter contact name: ');
+                let phone = prompt('Enter contact number: ');
+                let contactobj = {
+                name : contactName,
+                phoneNumber : phone
+            }
+            contactsArr.push(contactobj);
+            alert(`contact added successfully!`); 
+            }
+            else if(msg === 'search'){
+                let searchMsg = prompt('Enter something to search: ');
+                for(let j=0; j<contactsArr.length; j++){
+                    (contactsArr[j].phoneNumber == searchMsg||contactsArr[j].name == searchMsg) ? alert(`The search result: \n Name: ${contactsArr[j].name} ,Number: ${contactsArr[j].phoneNumber}`)
+                    : alert('not found');
+                }
+            }
+            else if(msg == null)
+             break;  
+        }            
+    </script>
+</html>
